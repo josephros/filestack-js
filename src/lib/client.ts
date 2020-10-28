@@ -429,8 +429,7 @@ export class Client extends EventEmitter {
     upload.on('error', e => {
       if (this.forwardErrors) {
         Sentry.withScope(scope => {
-          scope.setExtras(e.details);
-          scope.setExtras({ uploadOptions: options, storeOptions });
+          scope.setExtras({ uploadOptions: options, storeOptions, ...e.details });
           Sentry.captureException(e);
         });
       }
