@@ -24,12 +24,12 @@ export class Store {
   private availableTypes = [];
 
   constructor() {
-    if (window.localStorage !== undefined) {
+    if (localStorage !== undefined) {
       this.availableTypes.push(STORE_TYPE.LOCAL);
       debug('Local storage exists');
     }
 
-    if (window.sessionStorage !== undefined) {
+    if (sessionStorage !== undefined) {
       this.availableTypes.push(STORE_TYPE.SESSION);
       debug('Session storage exists');
     }
@@ -90,9 +90,9 @@ export class Store {
 
     switch (prefType) {
       case STORE_TYPE.LOCAL:
-        return window.localStorage;
+        return localStorage;
       case STORE_TYPE.SESSION:
-        return window.sessionStorage;
+        return sessionStorage;
       default:
         // @ts-ignore
         return window[this.availableTypes[0]] as Storage;
