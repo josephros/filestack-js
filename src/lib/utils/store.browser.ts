@@ -28,10 +28,14 @@ export class Store {
       this.availableTypes.push(STORE_TYPE.LOCAL);
       debug('Local storage exists');
     }
-
-    if (sessionStorage !== undefined) {
-      this.availableTypes.push(STORE_TYPE.SESSION);
-      debug('Session storage exists');
+    
+    try {
+      if (sessionStorage !== undefined) {
+        this.availableTypes.push(STORE_TYPE.SESSION);
+        debug('Session storage exists');
+      }
+    } catch (err) {
+      debug('Session storage through error');
     }
 
     debug('availableTypes - %O', this.availableTypes);
