@@ -99,7 +99,10 @@ export class Store {
         return sessionStorage;
       default:
         // @ts-ignore
-        return window[this.availableTypes[0]] as Storage;
+
+        if (this.availableTypes[0] == STORE_TYPE.LOCAL) return localStorage;
+        if (this.availableTypes[0] == STORE_TYPE.SESSION) return sessionStorage;
+        // return window[this.availableTypes[0]] as Storage; // cannot reference through window in retool
     }
   }
 }
