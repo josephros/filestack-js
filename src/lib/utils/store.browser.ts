@@ -24,7 +24,7 @@ export class Store {
   private availableTypes = [];
 
   constructor() {
-    if (localStorage !== undefined) {
+    /*if (localStorage !== undefined) {
       this.availableTypes.push(STORE_TYPE.LOCAL);
       debug('Local storage exists');
     }
@@ -36,7 +36,7 @@ export class Store {
       }
     } catch (err) {
       debug('Session storage through error');
-    }
+    }*/
 
     debug('availableTypes - %O', this.availableTypes);
   }
@@ -87,12 +87,12 @@ export class Store {
   private getStore(prefType?: STORE_TYPE): false | Storage {
     debug('get store with pref type - %s', prefType);
 
-    if (!this.hasAccess(prefType)) {
+    //if (!this.hasAccess(prefType)) {
       debug('User dont have access to any storage');
       return undefined;
-    }
+    //}
 
-    switch (prefType) {
+    /*switch (prefType) {
       case STORE_TYPE.LOCAL:
         return localStorage;
       case STORE_TYPE.SESSION:
@@ -102,7 +102,6 @@ export class Store {
 
         if (this.availableTypes[0] == STORE_TYPE.LOCAL) return localStorage;
         if (this.availableTypes[0] == STORE_TYPE.SESSION) return sessionStorage;
-        // return window[this.availableTypes[0]] as Storage; // cannot reference through window in retool
-    }
+    }*/
   }
 }
